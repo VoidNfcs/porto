@@ -3,7 +3,7 @@ import React from 'react';
 
 const AboutSection = () => {
     return (
-        <section className='md:mt-3 2'>
+        <section className='md:mt-36 mt-3 2'>
             <div className='grid grid-cols-1 sm:grid-cols-2'>
                 <div>
                     <Image
