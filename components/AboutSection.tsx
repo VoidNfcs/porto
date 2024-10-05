@@ -25,18 +25,7 @@ const TAB_DATA: TabData[] = [
             </ul>
         ),
     },
-    {
-        title: 'Education',
-        id: 'education',
-        content: (
-            <ul className='list-disc pl-2'>
-                <li>SDN PELAMAMPANG 05 PAGI JAKARTA SELATAN</li>
-                <li>SDN PADURENAN 01 KOTA BEKASI</li>
-                <li>SMPN 10 KOTA BEKASI</li>
-                <li>SMK KARYA BAHANA MANDIRI 1 KOTA BEKASI</li>
-            </ul>
-        ),
-    },
+
     {
         title: 'Experience',
         id: 'experience',
