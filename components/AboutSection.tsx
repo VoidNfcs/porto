@@ -64,10 +64,11 @@ const AboutSection: React.FC = () => {
                     transition={{ duration: 0.5 }}
                 >
                     <Image
-                        src='/images/about.png'
+                        src='/images/zaky.png'
                         alt='About'
                         width={500}
                         height={500}
+                        className='rounded-tl-3xl rounded-br-3xl'
                     />
                 </motion.div>
                 <div className='mt-4 md:mt-0 text-left flex flex-col h-full'>
