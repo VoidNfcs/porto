@@ -127,7 +127,7 @@ const EmailSection: React.FC = () => {
 							id='subject'
 							name='subject'
 							required
-							placeholder='Hallo Zaky how was your day...'
+							placeholder='Invitation for a new project'
 							className='bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5'
 						/>
 					</div>
