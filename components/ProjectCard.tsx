@@ -24,6 +24,7 @@ const ProjectCard: React.FC<CardProps> = ({
 				style={{
 					background: `url(${imgUrl})`,
 					backgroundSize: 'cover',
+					backgroundPosition: 'center',
 				}}>
 				<div className='overlay items-center justify-center absolute top-0 left-0 w-full h-full bg-[#181818] bg-opacity-0 hidden group-hover:flex group-hover:bg-opacity-80 rounded-xl rounded-b-none transition-all duration-500'>
 					<Link
