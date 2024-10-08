@@ -37,7 +37,7 @@ const EmailSection: React.FC = () => {
 
 			if (response.ok) {
 				setStatusMessage('Message sent successfully!');
-				form.reset(); // Clear the form fields
+				form.reset();
 			} else {
 				setStatusMessage(resData.error || 'Something went wrong.');
 			}
@@ -131,8 +131,8 @@ const EmailSection: React.FC = () => {
 					<button
 						className='bg-purple-500 hover:bg-purple-950 text-white font-medium py-2.5 px-5 rounded-lg w-full'
 						type='submit'
-						disabled>
-						Disabled for a while
+						disabled={statusMessage !== null}>
+						Send Message
 					</button>
 					{statusMessage && (
 						<p className='mt-4 text-white'>{statusMessage}</p>
