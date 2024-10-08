@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface DataEmail {
 	email: string;
@@ -11,9 +11,22 @@ interface DataEmail {
 
 const EmailSection: React.FC = () => {
 	const [statusMessage, setStatusMessage] = useState<string | null>(null);
+	const [isSuccess, setIsSuccess] = useState<boolean>(false);
+	const [isLoading, setIsLoading] = useState<boolean>(false); // State untuk loading
+
+	// Menghilangkan notifikasi setelah 5 detik
+	useEffect(() => {
+		if (statusMessage) {
+			const timer = setTimeout(() => {
+				setStatusMessage(null);
+			}, 5000); // Notifikasi hilang setelah 5 detik
+			return () => clearTimeout(timer);
+		}
+	}, [statusMessage]);
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setIsLoading(true); // Aktifkan loading saat submit
 		const form = e.currentTarget;
 		const data: DataEmail = {
 			email: form.email.value,
@@ -36,14 +49,19 @@ const EmailSection: React.FC = () => {
 			const resData = await response.json();
 
 			if (response.ok) {
+				setIsSuccess(true);
 				setStatusMessage('Message sent successfully!');
 				form.reset();
 			} else {
+				setIsSuccess(false);
 				setStatusMessage(resData.error || 'Something went wrong.');
 			}
 		} catch (error) {
 			console.error(error);
+			setIsSuccess(false);
 			setStatusMessage('An unexpected error occurred.');
+		} finally {
+			setIsLoading(false); // Matikan loading setelah response
 		}
 	};
 
@@ -131,11 +149,20 @@ const EmailSection: React.FC = () => {
 					<button
 						className='bg-purple-500 hover:bg-purple-950 text-white font-medium py-2.5 px-5 rounded-lg w-full'
 						type='submit'
-						disabled={statusMessage !== null}>
-						Send Message
+						disabled={isLoading || statusMessage !== null}>
+						{isLoading ? 'Sending...' : 'Send Message'}
 					</button>
+
+					{/* Notifikasi Status Pengiriman */}
 					{statusMessage && (
-						<p className='mt-4 text-white'>{statusMessage}</p>
+						<p
+							className={`mt-4 text-center text-white px-4 py-2 rounded-md ${
+								isSuccess
+									? 'bg-green-500 animate-fade-out'
+									: 'bg-red-500 animate-fade-out'
+							}`}>
+							{statusMessage}
+						</p>
 					)}
 				</form>
 			</div>
